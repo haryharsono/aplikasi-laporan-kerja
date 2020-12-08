@@ -38,7 +38,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <p class="brand-link">
-      <img src="{{asset('gambar/gambar3.jpeg')}}" class="brand-image img-circle elevation-3"  style="opacity: .9">
+      <img src="{{asset('gambar/gambar5.jpg')}}" widht="50px" style="opacity: .9">
      
     </p>
 

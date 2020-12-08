@@ -5,7 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-    table {
+    td, th {
+        border: 1px solid #dddddd; 
+    } 
+    .page-break {
+    page-break-after: always;
+}
+    /* table { 
+        border-collapse: collapse; 
+    } */
+    /* table {
         font-family: arial, sans-serif;
         border-collapse: collapse;
         width: 100%;
@@ -19,7 +28,7 @@
 
     tr:nth-child(even) {
         background-color: #dddddd;
-    }
+    } */
     </style>
 </head>
 <body>
@@ -29,15 +38,15 @@
     <table >
         <thead>
             <tr>
-                <th>NO</th>
-                <th>Kabupaten/Kota</th>
-                <th>Tanggal</th>
-                <th>Sasaran Kerja</th>
-                <th>Nama Pelaksana</th>
-                <th>Uraian Kerja </th>
-                <th>Jumlah Output hasil kerja</th>
-                <th>Kendala/Permasalahan</th>
-                <th>Dokumen lampiran</th>
+                <th >NO</th>
+                <th >Kabupaten/Kota</th>
+                <th >Tanggal</th>
+                <th >Sasaran Kerja</th>
+                <th >Nama Pelaksana</th>
+                <th >Bagian Pelaksana</th>
+                <th >Uraian Kerja </th>
+                <th >Jumlah Output hasil kerja</th>
+                <th >Kendala/Permasalahan</th> 
             </tr>
         </thead>
         <tbody>
@@ -47,10 +56,11 @@
             @foreach($data as $laporan)
             @php
                 $helpme++
-            @endphp
+            @endphp 
+ 
+             
             <tr>
                 <th scope="row">{{ $loop->iteration}}</th>
-                 
                     @foreach($countKota as $kota)
                         @if($kota->id_kabupaten == $laporan->id_kabupaten )
                             @if($helpme == 1)
@@ -69,19 +79,9 @@
                 <td>{{$laporan->uraian_kerja}}</td>
                 <td>{{$laporan->jumlah_output_hasil}}</td>
                 <td>{{$laporan->kendala}}</td>
-                <td>{{$laporan->dokument_lampiran}}</td>
-                <td>
-                    <a href="/edit/{{$laporan->id}}" class="fas fa-edit"></a>
-                    <a href="/hapus/{{$laporan->id}}" class="fas fa-trash-alt"></a>
-                </td>
-            </tr>
-            @endforeach {{-- @foreach($kabupaten as $kabupaten)
-            <tr>
-                <th scope="row">{{ $loop->iteration}}</th>
-
-                <td>{{$kabupaten->nama_kabupaten}}</td>
-            </tr>
-            @endforeach --}}
+              
+            </tr>  
+            @endforeach 
         </tbody>
     </table>
 </body>

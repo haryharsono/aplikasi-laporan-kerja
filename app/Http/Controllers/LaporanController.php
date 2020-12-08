@@ -133,7 +133,12 @@ class LaporanController extends Controller
 
     public function print()
     {
-        $data = Laporan::all();
+        $data = DB::table('tbl_master')
+            ->join('tabel_kabupaten_kota', 'tbl_master.id_kabupaten', '=', 'tabel_kabupaten_kota.nama_kabupaten')
+            ->select('tbl_master.*')
+            ->orderBy('tabel_kabupaten_kota.id')
+            ->orderBy('tbl_master.tgl_laporan')
+            ->get();
         $kabupaten = DB::table('tabel_kabupaten_kota')
             ->select('nama_kabupaten')
             ->get();
