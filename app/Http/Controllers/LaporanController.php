@@ -103,7 +103,14 @@ class LaporanController extends Controller
      */
     public function update(Request $request)
     {
-        
+         $validated = $request->validate([ 
+            'file' => 'mimes:jpeg,jpg,png,docx,doc,pdf|max:80|required',
+        ],
+    
+        [
+            'file.required' => 'Data tidak boleh kosong.',
+            
+        ]);
          $a=DB::table('tbl_master')->where('id',$request->id)->update([
             'nama_pelaksana' => $request->nama,
             'sasaran_kerja' => $request->sasaran_kerja,

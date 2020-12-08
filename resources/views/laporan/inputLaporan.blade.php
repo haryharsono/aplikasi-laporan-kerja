@@ -133,10 +133,11 @@
                                             <label for="exampleInputFile">File input</label>
                                             <div class="input-group">
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" name="file" required />
+                                                    <input type="file" class="custom-file-input @error('file') is-invalid @enderror " name="file" required />
                                                     <label class="custom-file-label" for="exampleInputFile">Masukkan File Anda</label>
+                                                  </div>
                                                 </div>
-                                            </div>
+                                                <small class="text-danger"> {{ $errors->first('file') }}</small>
                                         </div>
 
                                         <button type="submit" class="btn btn-primary">Simpan</button>
