@@ -5,7 +5,7 @@ use App\Http\Controllers\Controllers;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InputController;
-use App\Http\Controllers\PengaturanController;
+use App\Http\Controllers\PengaturanController; 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
