@@ -7,6 +7,9 @@ use App\Model\Laporan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use PDF;
+use Excel; 
+use App\Exports\Report;
+use App\Exports\ViewReport;
 
 class LaporanController extends Controller
 {
@@ -133,16 +136,19 @@ class LaporanController extends Controller
 
     public function print()
     {
-        $data = Laporan::all();
-        $kabupaten = DB::table('tabel_kabupaten_kota')
-            ->select('nama_kabupaten')
-            ->get();
+        return (new ViewReport)->download('Laporan.xlsx');
+        // return Excel::download(new Report, 'Report.xlsx');
+        // return Excel::download(new InvoicesExport, 'invoices.xlsx');
+        // $data = Laporan::all();
+        // $kabupaten = DB::table('tabel_kabupaten_kota')
+        //     ->select('nama_kabupaten')
+        //     ->get();
  
-        $countKota = DB::table('tbl_master')
-                    ->select(DB::raw('count(id_kabupaten) as jmlKab'), 'id_kabupaten')
-                    ->groupBy('id_kabupaten')->get();
-        $pdf = PDF::loadView('laporan.pdf', ['data'=> $data,'countKota'=>$countKota,'kabupaten'=>$kabupaten])->setPaper('a4', 'landscape');
+        // $countKota = DB::table('tbl_master')
+        //             ->select(DB::raw('count(id_kabupaten) as jmlKab'), 'id_kabupaten')
+        //             ->groupBy('id_kabupaten')->get();
+        // $pdf = PDF::loadView('laporan.pdf', ['data'=> $data,'countKota'=>$countKota,'kabupaten'=>$kabupaten])->setPaper('a4', 'landscape');
         // dd($pdf);
-        return $pdf->stream('laporan-pegawai.pdf');
+        // return $pdf->stream('laporan-pegawai.pdf');
     }
 }
