@@ -10,24 +10,18 @@ class InputController extends Controller
 {
     //
     public function input(){
-        return view('laporan.inputLaporan');
+        $kabupaten = DB::table('tabel_kabupaten_kota')->select('nama_kabupaten')->get();
+        $pelaksana = DB::table('tabel_pelaksana')->select('pelaksana')->get(); 
+        return view('laporan.inputLaporan', compact('kabupaten','pelaksana'));
     }
 
     public function store(Request $request)
     {
-        // simpan::create([
-        //     'nama' => $request->nama,
-        //     'sasaran_kerja' => $request->sasaran_kerja,
-        //     'bagian_pelaksana' => $request->bagian_pelaksana,
-        //     'uraian_kerja' => $request->uraian_kerja,
-        //     'tanggal' => $request->tanggal,
-        //     'kabupaten_kota' => $request->kabupaten_kota,
-        //     'jumlah_pengeluaran' => $request->jumlah_pengeluaran,
-        //     'uraian_kerja' => $request->uraian_kerja,
-        //     'kendala' => $request->kendala,
-        //     'file' => $request->file
+        $model = $request->all();
+        $file = $request->file('file');
+        $model['file'] = $file->getClientOriginalName(); 
+        $file->move("data_file",$model['file']); 
 
-        // ]);
         DB::table('tbl_master')->insert([
 			'nama_pelaksana' => $request->nama,
             'sasaran_kerja' => $request->sasaran_kerja,
@@ -37,12 +31,10 @@ class InputController extends Controller
             'id_kabupaten' => $request->kabupaten_kota,
             'jumlah_output_hasil' => $request->jumlah_pengeluaran,
             'kendala' => $request->kendala,
-            'dokument_lampiran' => $request->file
+            'dokument_lampiran' => $model['file']
         ]);
-         $file = 
- 
-	$tujuan_upload = 'data_file';
-	$file->move($tujuan_upload,$file->getClientOriginalName());
+  
+        
         return redirect('/inputData');
     }
 }

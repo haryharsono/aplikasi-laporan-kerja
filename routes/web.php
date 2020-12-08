@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/', 'HomeController@index');
     Route::get('/inputData', 'InputController@input');//user
     Route::get('/pengaturan', 'PengaturanController@pengaturan');//user
+    Route::post('/setting', 'PengaturanController@setting');//user
 
     
 });
