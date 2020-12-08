@@ -17,6 +17,17 @@ class InputController extends Controller
 
     public function store(Request $request)
     {
+        $validated = $request->validate([ 
+            'file' => 'mimes:jpeg,jpg,png,docx,doc,pdf|max:80|required',
+        ],
+    
+        [
+            'file.required' => 'Data tidak boleh kosong.',
+            
+        ]);
+   
+
+        
         $model = $request->all();
         $file = $request->file('file');
         $model['file'] = $file->getClientOriginalName(); 
