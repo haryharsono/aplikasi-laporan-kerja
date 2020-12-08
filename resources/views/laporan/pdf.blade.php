@@ -57,6 +57,7 @@
                 <td>{{$value->dokument_lampiran}}</td>
             </tr>
             @endforeach
+            
         </tbody>
     </table>
 </body>

@@ -27,7 +27,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/print', 'LaporanController@print');
         Route::post('/inputDatastore', 'InputController@store');
         Route::get('/edit/{id}','LaporanController@edit');
-        Route::post('/hapus/{id}','LaporanController@destroy');
+        Route::get('/hapus/{id}','LaporanController@destroy');
         Route::post('/update','LaporanController@update');
         Route::get('/kabupaten','LaporanController@dataKabupaten');
     });

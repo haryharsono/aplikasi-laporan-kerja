@@ -144,7 +144,7 @@
                     <label for="exampleInputFile">File input</label>
                     <div class="input-group">
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="file" required>
+                        <input type="file" class="custom-file-input" name="file" accept=".jpg,.png,.doc,.docx,.pdf,.jpeg" required>
                         <label class="custom-file-label" for="exampleInputFile">"{{$data->dokument_lampiran}}"</label>
                       </div>
                       <div class="input-group-append">

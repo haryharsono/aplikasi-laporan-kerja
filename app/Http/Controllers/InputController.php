@@ -39,7 +39,6 @@ class InputController extends Controller
             'kendala' => $request->kendala,
             'dokument_lampiran' => $request->file
         ]);
-         $file = 
  
 	$tujuan_upload = 'data_file';
 	$file->move($tujuan_upload,$file->getClientOriginalName());
