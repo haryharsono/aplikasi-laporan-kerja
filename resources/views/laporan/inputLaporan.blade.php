@@ -99,7 +99,7 @@
                                                         <i class="far fa-calendar-alt"></i>
                                                     </span>
                                                 </div>
-                                                <input type="date" class="form-control float-right" name="tanggal" />
+                                                <input type="date" class="form-control float-right" name="tanggal" required/>
                                             </div>
                                             <!-- /.input group -->
                                         </div>

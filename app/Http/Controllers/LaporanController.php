@@ -131,7 +131,14 @@ class LaporanController extends Controller
     public function print()
     {
         $data = Laporan::all();
-        $pdf = PDF::loadView('laporan.pdf', ['data'=> $data])->setPaper('a4', 'landscape');
+        $kabupaten = DB::table('tabel_kabupaten_kota')
+            ->select('nama_kabupaten')
+            ->get();
+ 
+        $countKota = DB::table('tbl_master')
+                    ->select(DB::raw('count(id_kabupaten) as jmlKab'), 'id_kabupaten')
+                    ->groupBy('id_kabupaten')->get();
+        $pdf = PDF::loadView('laporan.pdf', ['data'=> $data,'countKota'=>$countKota,'kabupaten'=>$kabupaten])->setPaper('a4', 'landscape');
         // dd($pdf);
         return $pdf->stream('laporan-pegawai.pdf');
     }

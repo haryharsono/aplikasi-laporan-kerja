@@ -42,22 +42,46 @@
         </thead>
         <tbody>
             @php
-                $no = 1;
+                $helpme = 0  
             @endphp
-            @foreach($data as $value)
+            @foreach($data as $laporan)
+            @php
+                $helpme++
+            @endphp
             <tr>
-                <td>{{$no++}}</td>
-                <td>{{$value->id_kabupaten}}</td>
-                <td>{{$value->tgl_laporan}}</td>
-                <td>{{$value->sasaran_kerja}}</td>
-                <td>{{$value->nama_pelaksana}}</td> 
-                <td>{{$value->uraian_kerja}}</td>
-                <td>{{$value->jumlah_output_hasil}}</td>
-                <td>{{$value->kendala}}</td>
-                <td>{{$value->dokument_lampiran}}</td>
+                <th scope="row">{{ $loop->iteration}}</th>
+                 
+                    @foreach($countKota as $kota)
+                        @if($kota->id_kabupaten == $laporan->id_kabupaten )
+                            @if($helpme == 1)
+                                <td rowspan="{{ $kota->jmlKab }}" >{{$laporan->id_kabupaten}}</td> 
+                            @elseif($kota->jmlKab == $helpme )   
+                                @php
+                                    $helpme = 0
+                                @endphp
+                            @endif 
+                        @endif 
+                    @endforeach 
+                <td> {{$laporan->tgl_laporan}}</td> 
+                <td>{{$laporan->sasaran_kerja}}</td>
+                <td>{{$laporan->nama_pelaksana}}</td>
+                <td>{{$laporan->bagian_pelaksana}}</td>
+                <td>{{$laporan->uraian_kerja}}</td>
+                <td>{{$laporan->jumlah_output_hasil}}</td>
+                <td>{{$laporan->kendala}}</td>
+                <td>{{$laporan->dokument_lampiran}}</td>
+                <td>
+                    <a href="/edit/{{$laporan->id}}" class="fas fa-edit"></a>
+                    <a href="/hapus/{{$laporan->id}}" class="fas fa-trash-alt"></a>
+                </td>
             </tr>
-            @endforeach
-            
+            @endforeach {{-- @foreach($kabupaten as $kabupaten)
+            <tr>
+                <th scope="row">{{ $loop->iteration}}</th>
+
+                <td>{{$kabupaten->nama_kabupaten}}</td>
+            </tr>
+            @endforeach --}}
         </tbody>
     </table>
 </body>
