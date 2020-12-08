@@ -64,6 +64,7 @@
   <!-- Control Sidebar -->
   
   <!-- /.control-sidebar -->
+  @include('layout.include.footer')
 </div>
 <!-- ./wrapper -->
 
