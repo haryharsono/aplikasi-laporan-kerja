@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\Laporan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use PDF;
 
 class LaporanController extends Controller
 {
@@ -123,8 +124,15 @@ class LaporanController extends Controller
     public function destroy($id)
     {
         $data = DB::table('tbl_master')->where('id',$id)->get();
-    $kabupaten = DB::table('tabel_kabupaten_kota')->where('id',$id)->select('nama_kabupaten')->get();
-	return redirect('/layout.master');;
+        $kabupaten = DB::table('tabel_kabupaten_kota')->where('id',$id)->select('nama_kabupaten')->get();
+        return redirect('/layout.master');
+    }
 
+    public function print()
+    {
+        $data = Laporan::all();
+        $pdf = PDF::loadView('laporan.pdf', ['data'=> $data])->setPaper('a4', 'landscape');
+        // dd($pdf);
+        return $pdf->stream('laporan-pegawai.pdf');
     }
 }
