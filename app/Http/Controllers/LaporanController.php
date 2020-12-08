@@ -125,7 +125,11 @@ class LaporanController extends Controller
     {
         $data = DB::table('tbl_master')->where('id',$id)->get();
         $kabupaten = DB::table('tabel_kabupaten_kota')->where('id',$id)->select('nama_kabupaten')->get();
+<<<<<<< HEAD
         return Redirect::to('laporan');
+=======
+        return redirect('/layout.master');
+>>>>>>> 6374d9d4c734cfe342822a6909c814faa7aeef84
     }
 
     public function print()
