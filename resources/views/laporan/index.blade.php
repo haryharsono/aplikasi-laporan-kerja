@@ -46,11 +46,28 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $helpme = 0  
+                                @endphp
                                 @foreach($data as $laporan)
+                                @php
+                                    $helpme++
+                                @endphp
                                 <tr>
                                     <th scope="row">{{ $loop->iteration}}</th>
-                                    <td>{{$laporan->id_kabupaten}}</td>
-                                    <td>{{$laporan->tgl_laporan}}</td>
+                                     
+                                        @foreach($countKota as $kota)
+                                            @if($kota->id_kabupaten == $laporan->id_kabupaten )
+                                                @if($helpme == 1)
+                                                    <td rowspan="{{ $kota->jmlKab }}" >{{$laporan->id_kabupaten}}</td> 
+                                                @elseif($kota->jmlKab == $helpme )   
+                                                    @php
+                                                        $helpme = 0
+                                                    @endphp
+                                                @endif 
+                                            @endif 
+                                        @endforeach 
+                                    <td> {{$laporan->tgl_laporan}}</td> 
                                     <td>{{$laporan->sasaran_kerja}}</td>
                                     <td>{{$laporan->nama_pelaksana}}</td>
                                     <td>{{$laporan->bagian_pelaksana}}</td>
