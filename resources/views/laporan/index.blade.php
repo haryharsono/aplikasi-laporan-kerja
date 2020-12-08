@@ -20,9 +20,9 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                      <a href="/inputData">
-                        <button type="button" class="btn  btn-primary" data-target="#exampleModal">Tambah Data  </button>
-                    </a>
+                        <a href="/inputData">
+                            <button type="button" class="btn  btn-primary" data-target="#exampleModal">Tambah Data  </button>
+                        </a>
                         <a href="/print">
                             <button type="button" class="btn  btn-primary" data-target="#exampleModal">PRINT  </button>
                         </a>
