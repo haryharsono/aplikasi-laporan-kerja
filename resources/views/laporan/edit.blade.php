@@ -106,7 +106,7 @@
                           <i class="far fa-calendar-alt"></i>
                         </span>
                       </div>
-                      <input type="text" class="form-control float-right" name="tanggal">
+                      <input type="date" class="form-control float-right" value="{{$data->tgl_laporan}}" name="tanggal" >
                     </div>
                     <!-- /.input group -->
                   </div>

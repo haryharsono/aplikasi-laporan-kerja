@@ -146,9 +146,6 @@
                         <input type="file" class="custom-file-input" name="file" required>
                         <label class="custom-file-label" for="exampleInputFile">Masukkan File Anda</label>
                       </div>
-                      <div class="input-group-append">
-                        <span class="input-group-text" id="">Upload</span>
-                      </div>
                     </div>
                   </div>
 

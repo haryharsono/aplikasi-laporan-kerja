@@ -109,7 +109,7 @@ class LaporanController extends Controller
             'kendala' => $request->kendala,
             'dokument_lampiran' => $request->filet
         ]);
-        dd($a);
+        //dd($a);
         
         return Redirect::to('laporan');
     
@@ -125,7 +125,7 @@ class LaporanController extends Controller
     {
         $data = DB::table('tbl_master')->where('id',$id)->get();
         $kabupaten = DB::table('tabel_kabupaten_kota')->where('id',$id)->select('nama_kabupaten')->get();
-        return redirect('/layout.master');
+        return Redirect::to('laporan');
     }
 
     public function print()
