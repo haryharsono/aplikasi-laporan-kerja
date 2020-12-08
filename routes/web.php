@@ -5,7 +5,7 @@ use App\Http\Controllers\Controllers;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InputController;
-use App\Http\Controllers\PengaturanController;
+use App\Http\Controllers\PengaturanController; 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +24,7 @@ use App\Http\Controllers\PengaturanController;
 Route::group(['middleware' => ['auth']], function() {
     Route::group(['middleware' => ['admin']], function() {
         Route::get('/laporan', 'LaporanController@index');
+        Route::get('/print', 'LaporanController@print');
         Route::post('/inputDatastore', 'InputController@store');
         Route::get('/edit/{id}','LaporanController@edit');
         Route::post('/hapus/{id}','LaporanController@destroy');

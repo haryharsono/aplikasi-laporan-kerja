@@ -72,7 +72,7 @@
                     </div>
                 <div class="form-group">
                   <label>Bagian Pelaksana</label>
-                  <select class="form-control select2" style="width: 100%;" name="bagian_pelaksana">
+                  <select class="form-control select2" style="width: 100%;" name="bagian_pelaksana"  value="{{$data->bagian_pelaksana}}" >
                     <option selected="selected">Pengawasan</option>
                     <option>Alaska</option>
                     <option>California</option>
@@ -112,7 +112,7 @@
                   </div>
                   <div class="form-group">
                     <label>Kabupaten/Kota</label>
-                    <select class="form-control select2" style="width: 100%;" name="kabupaten_kota">
+                    <select class="form-control select2" style="width: 100%;" name="kabupaten_kota" value="{{$data->id_kabupaten}}">
                       <option selected="selected">Makassar</option>
                       <option>Alaska</option>
                       <option>California</option>
@@ -145,7 +145,7 @@
                     <div class="input-group">
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" name="file" required>
-                        <label class="custom-file-label" for="exampleInputFile">Masukkan File Anda</label>
+                        <label class="custom-file-label" for="exampleInputFile">"{{$data->dokument_lampiran}}"</label>
                       </div>
                       <div class="input-group-append">
                         <span class="input-group-text" id="">Upload</span>
