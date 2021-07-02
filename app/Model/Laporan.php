@@ -7,17 +7,27 @@ use Illuminate\Database\Eloquent\Model;
 class Laporan extends Model
 {
     public $timestamps= false;
-        protected $table='tbl_master';
+        protected $table='laporan';
         protected $primaryKey='id';
         protected $fillable=[
-            'id_kabupaten',
-            'tgl_laporan',
-            'sasaran_kerja',
-            'nama_pelaksana',
-            'bagian_pelaksana',
-            'uraian_kerja',
-            'jumlah_output_hasil',
-            'kendala',
-            'dokument_lampiran'
+            'wajib_pajak',
+            'Nama_penjual',
+            'nop',
+            'lokasi_objek_pajak',
+            'kecamatan_objek',
+            'kelurahan_objek',
+            'luas_tanah',
+            'luas_bangunan',
+            'njop_tanah',
+            'hasil_njop_tanah',
+            'hasil_njop_bangunan',
+            'njop_pbb',
+            'harga_transaksi',
+            'npoptkp',
+            'bphtb',
+            'ket_tanah',
+            'ppat',
+            'keterangan_pembayaran',
+            'tanggal'
 ];
 }

@@ -23,21 +23,15 @@ class LaporanController extends Controller
         // $data=Laporan::all();
         // $tampung=$data->groupBy("id_kabupaten");
         //dd($tampung);
-        $data = DB::table('tbl_master')
-            ->join('tabel_kabupaten_kota', 'tbl_master.id_kabupaten', '=', 'tabel_kabupaten_kota.nama_kabupaten')
-            ->select('tbl_master.*')
-            ->orderBy('tabel_kabupaten_kota.id')
-            ->orderBy('tbl_master.tgl_laporan')
-            ->get();
-        $kabupaten = DB::table('tabel_kabupaten_kota')
-            ->select('nama_kabupaten')
-            ->get();
- 
-        $countKota = DB::table('tbl_master')
-                    ->select(DB::raw('count(id_kabupaten) as jmlKab'), 'id_kabupaten')
-                    ->groupBy('id_kabupaten')->get();
-        // dd($countKota);
-        return view('laporan.index',compact('data','kabupaten','countKota'));
+        $data = DB::table('laporan')
+             ->select('id','wajib_pajak', 'Nama_penjual','lokasi_objek_pajak','kecamatan_objek','kelurahan_objek','luas_tanah','luas_bangunan','harga_transaksi','bphtb')
+             ->paginate(5);
+       
+    //     $countKota = DB::table('tbl_master')
+    //                 ->select(DB::raw('count(id_kabupaten) as jmlKab'), 'id_kabupaten')
+    //                 ->groupBy('id_kabupaten')->get();
+    // //    dd($data);
+        return view('laporan.index',['data' => $data]);
     }
     /**
      * Show the form for creating a new resource.
@@ -48,13 +42,13 @@ class LaporanController extends Controller
     {
         //
     }
-    public function dataKabupaten(){
-        $kabupaten = DB::table('tabel_kabupaten_kota')
-                ->select('nama_kabupaten')
-                ->get();
-        dd($kabupaten);
-        return view('index',compact("kabupaten"));
-    }
+    // public function dataKabupaten(){
+    //     $kabupaten = DB::table('tabel_kabupaten_kota')
+    //             ->select('nama_kabupaten')
+    //             ->get();
+    //    // dd($kabupaten);
+    //     return view('index',compact("kabupaten"));
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -87,11 +81,23 @@ class LaporanController extends Controller
     public function edit($id)
     {
 
-    // $data = DB::table('tbl_master')->where('id',$id)->get();
-    $data = Laporan::find($id);
-    $kabupaten = DB::table('tabel_kabupaten_kota')->where('id',$id)->select('nama_kabupaten')->get();
-    // dd($data);
-	return view('/laporan/edit', compact('data','kabupaten'));
+        //$laporan = DB::table('laporan')->where('id',$id)->get();
+        // passing data pegawai yang didapat ke view edit.blade.php;
+        //$data= laporan::find($id);
+        $laporan = Laporan::find($id);
+        $kab = DB::table('kecamatan')->select('kecamatan')->get();
+        $npoptkp = DB::table('npoptkp')->select('npoptkp_harga')->get();
+        $keterangan_tanah = DB::table('penjualan_tanah')->select('keterangan_penjualan')->get();
+        return view('/laporan/edit') 
+                    ->with(compact('laporan'))
+                    ->with(compact('kab'))
+                    ->with(compact('npoptkp'))
+                    ->with(compact('keterangan_tanah'));
+    // return View('/laporan/edit')
+    //                 ->with(compact('data'))
+    //                 ->with(compact('kabupaten'))
+    //                 ;
+
     }   
 
     /**
@@ -103,15 +109,15 @@ class LaporanController extends Controller
      */
     public function update(Request $request)
     {
-         $validated = $request->validate([ 
-            'file' => 'mimes:jpeg,jpg,png,docx,doc,pdf|max:80|required',
-        ],
+        //  $validated = $request->validate([ 
+        //     'file' => 'mimes:jpeg,jpg,png,docx,doc,pdf|max:80|required',
+        // ],
     
-        [
-            'file.required' => 'Data tidak boleh kosong.',
+        // [
+        //     'file.required' => 'Data tidak boleh kosong.',
             
-        ]);
-         $a=DB::table('tbl_master')->where('id',$request->id)->update([
+        // ]);
+         $a=DB::table('laporan')->where('id',$request->id)->update([
             'nama_pelaksana' => $request->nama,
             'sasaran_kerja' => $request->sasaran_kerja,
             'bagian_pelaksana' => $request->bagian_pelaksana,
@@ -136,7 +142,7 @@ class LaporanController extends Controller
      */
     public function destroy($id)
     {
-        $data = DB::table('tbl_master')->where('id',$id)->delete();
+        $data = DB::table('laporan')->where('id',$id)->delete();
      
         return Redirect::to('laporan');
     }

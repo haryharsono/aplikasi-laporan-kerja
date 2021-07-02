@@ -21,8 +21,8 @@ use App\Http\Controllers\PengaturanController;
 //     return view('layout\master');
 // });
 //Route::get('/', [HomeController::class,"index"]);
-Route::group(['middleware' => ['auth']], function() {
-    Route::group(['middleware' => ['admin']], function() {
+//Route::group(['middleware' => ['auth']], function() {
+ //   Route::group(['middleware' => ['admin']], function() {
         Route::get('/laporan', 'LaporanController@index');
         Route::get('/print', 'LaporanController@print');
         Route::post('/inputDatastore', 'InputController@store');
@@ -30,13 +30,12 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/hapus/{id}','LaporanController@destroy');
         Route::post('/update','LaporanController@update');
         Route::get('/kabupaten','LaporanController@dataKabupaten');
-    });
+//    });
     Route::get('/', 'HomeController@index');
     Route::get('/inputData', 'InputController@input');//user
+   
     Route::get('/pengaturan', 'PengaturanController@pengaturan');//user
-    Route::post('/setting', 'PengaturanController@setting');//user
-
-    
-});
+    Route::post('/setting', 'PengaturanController@setting');//user 
+//});
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

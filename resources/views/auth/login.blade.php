@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>AdminLTE 3 | Log in</title>
+        <title>Quick Respon Laporan</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -20,9 +20,9 @@
     </head>
     <body class="hold-transition login-page">
         <div class="container">
-            <div class="row justify-content">
-                <div class="col-sm">
-                    <img src="{{asset('gambar/gambar1.jpeg')}}" style="width:100%;">
+            <div class="row align-items-center">
+                <div class="col-sm" >
+                    <img src="{{asset('gambar/aaaa.png')}}" style="margin-left:25%;margin-right:25%;width: 50%" >
                 </div>
                 <div class="col-sm">
                     
@@ -85,8 +85,8 @@
                     </div> 
                 </div> 
             
-                <div class="col-sm">
-                    <img src="{{asset('gambar/gambar2.jpeg')}}"   style="width:100%;">
+                <div class="col-sm"  >
+                    <img cclass="rounded mx-auto d-block" style="margin-right:25%;margin-left:25%;width: 50%" src="{{asset('gambar/aaab.png')}}">
                 </div>
             </div> 
         </div>

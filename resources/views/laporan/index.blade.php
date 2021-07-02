@@ -20,33 +20,57 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="/inputData">
-                            <button type="button" class="btn  btn-primary" data-target="#exampleModal">Tambah Data  </button>
-                        </a>
-                        <a href="/print">
+                   
+                        <a href="{{url('/print')}}">
                             <button type="button" class="btn  btn-primary" data-target="#exampleModal">PRINT  </button>
                         </a>
+                        
+                            
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+                        <div class="table-responsive">
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Kabupaten/Kota</th>
-                                    <th>Tanggal Laporan</th>
-                                    <th>Sasaran Kerja</th>
-                                    <th>Nama Pelaksana</th>
-                                    <th>Bagian Pelaksana</th>
-                                    <th>Uraian Kerja</th>
-                                    <th>Jumlah Output Hasil</th>
-                                    <th>Kendala</th>
-                                    <th>Dokumen Lampiran</th>
-                                    <th>Aksi</th>
+                                    <th style="text-align: center" class="align-middle">No</th>
+                                    <th style="text-align: center" class="align-middle">Nama Wajib Pajak</th>
+                                    <th style="text-align: center" class="align-middle">Nama Penjual</th>
+                                    <th style="text-align: center" class="align-middle">Lokasi Objek Pajak</th>
+                                    <th style="text-align: center" class="align-middle">Kecamatan Objek</th>
+                                    <th style="text-align: center" class="align-middle">Kelurahan Objek</th>
+                                    <th style="text-align: center" class="align-middle">Luas Tanah</th>
+                                    <th style="text-align: center" class="align-middle">Luas Bangunan</th>
+                                    <th style="text-align: center" class="align-middle">Harga Transaksi</th>
+                                    <th style="text-align: center" class="align-middle">BPHTB</th>
+                                    <th style="text-align: center" class="align-middle">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @php
+                                <?php $no = 0;?>
+                                @foreach($data as $laporan)
+                                <?php $no++ ;?>
+                                    <tr>
+                                        <td style="text-align: center" class="align-middle">{{ $no }}</td>
+                                        <td style="text-align: center" class="align-middle"> {{$laporan->wajib_pajak}}</td> 
+                                        <td style="text-align: center" class="align-middle">{{$laporan->Nama_penjual}}</td>
+                                        <td style="text-align: center" class="align-middle">{{$laporan->lokasi_objek_pajak}}</td>
+                                        <td style="text-align: center" class="align-middle">{{$laporan->kecamatan_objek}}</td>
+                                        <td style="text-align: center" class="align-middle">{{$laporan->kelurahan_objek}}</td>
+                                        <td style="text-align: center" class="align-middle">{{$laporan->luas_tanah}}</td>
+                                        <td style="text-align: center" class="align-middle">{{$laporan->luas_bangunan}}</td>
+                                        <td style="text-align: center" class="align-middle">{{$laporan->harga_transaksi}}</td>
+                                        <td style="text-align: center" class="align-middle">{{$laporan->bphtb}}</td>
+                                        <td style="text-align: center" class="align-middle">
+                                        <div class="btn-group">
+                                        <a href="{{ url('/edit/'.$laporan->id) }}" class="fas fa-edit"></a>
+                                        
+                                        <a href="{{ url('/hapus/'.$laporan->id) }}" class="fas fa-trash-alt"></a>
+                                    </div>
+                                    </td>
+                                    </tr>
+                                    @endforeach
+                                {{-- @php
                                     $helpme = 0  
                                 @endphp
                                 @foreach($data as $laporan)
@@ -59,25 +83,31 @@
                                         @foreach($countKota as $kota)
                                             @if($kota->id_kabupaten == $laporan->id_kabupaten )
                                                 @if($helpme == 1)
-                                                    <td rowspan="{{ $kota->jmlKab }}" >{{$laporan->id_kabupaten}}</td> 
-                                                @elseif($kota->jmlKab == $helpme )   
+                                                    <td rowspan="{{ $kota->jmlKab }}" style="text-align: center" class="align-middle">{{$laporan->id_kabupaten}}</td> 
+                                                @endif
+                                                @if($kota->jmlKab == $helpme )   
                                                     @php
                                                         $helpme = 0
-                                                    @endphp
+                                                    @endphp  
+                                                @elseif($kota->jmlKab == 1)  
+                                                    <td style="text-align: center" class="align-middle">{{$laporan->id_kabupaten}}</td> 
                                                 @endif 
                                             @endif 
                                         @endforeach 
-                                    <td> {{$laporan->tgl_laporan}}</td> 
-                                    <td>{{$laporan->sasaran_kerja}}</td>
-                                    <td>{{$laporan->nama_pelaksana}}</td>
-                                    <td>{{$laporan->bagian_pelaksana}}</td>
-                                    <td>{{$laporan->uraian_kerja}}</td>
-                                    <td>{{$laporan->jumlah_output_hasil}}</td>
-                                    <td>{{$laporan->kendala}}</td>
-                                    <td>{{$laporan->dokument_lampiran}}</td>
-                                    <td>
-                                        <a href="/edit/{{$laporan->id}}" class="fas fa-edit"></a>
-                                        <a href="/hapus/{{$laporan->id}}" class="fas fa-trash-alt"></a>
+                                    <td style="text-align: center" class="align-middle"> {{$laporan->tgl_laporan}}</td> 
+                                    <td style="text-align: center" class="align-middle">{{$laporan->sasaran_kerja}}</td>
+                                    <td style="text-align: center" class="align-middle">{{$laporan->nama_pelaksana}}</td>
+                                    <td style="text-align: center" class="align-middle">{{$laporan->bagian_pelaksana}}</td>
+                                    <td style="text-align: center" class="align-middle">{{$laporan->uraian_kerja}}</td>
+                                    <td style="text-align: center" class="align-middle">{{$laporan->jumlah_output_hasil}}</td>
+                                    <td style="text-align: center" class="align-middle">{{$laporan->kendala}}</td>
+                                    <td style="text-align: center" class="align-middle">{{$laporan->dokument_lampiran}}</td>
+                                    <td style="text-align: center" class="align-middle">
+                                        <div class="btn-group">
+                                        <a href="{{ url('/edit/'.$laporan->id) }}" class="fas fa-edit"></a>
+                                        
+                                        <a href="{{ url('/hapus/'.$laporan->id) }}" class="fas fa-trash-alt"></a>
+                                    </div>
                                     </td>
                                 </tr>
                                 @endforeach {{-- @foreach($kabupaten as $kabupaten)
@@ -86,10 +116,16 @@
 
                                     <td>{{$kabupaten->nama_kabupaten}}</td>
                                 </tr>
-                                @endforeach --}}
+                                @endforeach --}} 
                             </tbody>
                         </table>
-                    </div> 
+                        <br/>
+	Halaman : {{ $data->currentPage() }} <br/>
+	Jumlah Data : {{ $data->total() }} <br/>
+	Data Per Halaman : {{ $data->perPage() }} <br/>
+    {{ $data->links() }}
+                    </div>
+                    </div>  
                 </div>  
             </div>
         </div>

@@ -1,95 +1,71 @@
 @extends('layout.master')
 @section('content')
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Advanced form elements</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{asset('admin/plugins/fontawesome-free/css/all.min.css')}}">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- daterange picker -->
-  <link rel="stylesheet" href="{{asset('admin/plugins/daterangepicker/daterangepicker.css')}}">
-  <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="{{asset('admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
-  <!-- Bootstrap Color Picker -->
-  <link rel="stylesheet" href="{{asset('admin/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}">
-  <!-- Tempusdominus Bbootstrap 4 -->
-  <link rel="stylesheet" href="{{asset('admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
-  <!-- Select2 -->
-  <link rel="stylesheet" href="{{asset('admin/plugins/select2/css/select2.min.css')}}">
-  <link rel="stylesheet" href="{{asset('admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
-  <!-- Bootstrap4 Duallistbox -->
-  <link rel="stylesheet" href="{{asset('admin/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')}}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('admin/dist/css/adminlte.min.css')}}">
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-</head>
-<body class="hold-transition sidebar-mini">
-<div class="wrapper">
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Input Data</h1>
+            <h1>Edit Data</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
     <section class="content">
-      <div class="container-fluid">
+     
         <div class="card card-default">
-          <div class="card-header">
-            
-            <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
-            </div>
+          
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <form class="form-horizontal" action="/update" method="post" enctype="multipart/form-data">
-                {{ csrf_field() }}
-            <div class="row">
+           <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Nama Pelaksana</label>
-                        <input type="hidden" name="id" value="{{$data->id}}">
-                    <input type="text" name="nama" class="form-control" value="{{$data->nama_pelaksana}}" placeholder="Masukkan Nama" required>
+                      <form class="form-horizontal" action="{{url('/update')}}" method="post" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                   
+                        <label for="exampleInputEmail1">Nama Wajib Pajak</label>
+                        <input type="hidden" name="id" value="{{ $laporan->id }}">
+                    <input type="text" name="nama" class="form-control" value="{{$laporan->wajib_pajak}}" placeholder="Masukkan Nama" required>
                       </div>
                       <div class="form-group">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Sasaran Kerja</label>
-                            <input type="text" name="sasaran_kerja" value="{{$data->sasaran_kerja}}" class="form-control" placeholder="Masukkan Sasaran Kerja" required>
+                            <label for="exampleInputEmail1">Nama Penjual</label>
+                            <input type="text" name="sasaran_kerja" value="{{$laporan->Nama_penjual}}" class="form-control" placeholder="Masukkan Sasaran Kerja" required>
                           </div>
+                          
                     </div>
+                    <div class="form-group">
+                      <div class="form-group">
+                          <label for="exampleInputEmail1">Nomor Objek Pajak (NOP)</label>
+                          <input type="text" name="sasaran_kerja" value="{{$laporan->nop}}" class="form-control" placeholder="Masukkan Sasaran Kerja" required>
+                        </div>
+                        
+                  </div>
+                  <div class="form-group">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Lokasi Objek Pajak</label>
+                        <input type="text" name="sasaran_kerja" value="{{$laporan->lokasi_objek_pajak}}" class="form-control" placeholder="Masukkan Sasaran Kerja" required>
+                      </div>
+                      
+                </div>
                 <div class="form-group">
-                  <label>Bagian Pelaksana</label>
-                  <select class="form-control select2" style="width: 100%;" name="bagian_pelaksana"  value="{{$data->bagian_pelaksana}}" >
-                    <option selected="selected">Pengawasan</option>
-                    <option>Alaska</option>
-                    <option>California</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Washington</option>
+                  <label>Kecamatan Objek</label>
+                  <select class="form-control select2" style="width: 100%;" name="bagian_pelaksana" value="{{$laporan->kecamatan_objek}}">
+                    @foreach($kab as $value)
+                    <option value="{{ $value->kecamatan }}" {{ (($laporan->kecamatan_objek == $value->kecamatan)) ? 'selected' : null }}>{{ $value->kecamatan }}</option>
+                     @endforeach
                   </select>
                 </div>
                 <!-- /.form-group -->
                 
                 </div>
                 
+                
                 <div class="form-group">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Uraian Kerja</label>
-                        <input type="text" class="form-control" placeholder="Masukkan Uraian Kerja" name="uraian_kerja" value="{{$data->uraian_kerja}}" required>
+                        <label for="exampleInputEmail1">Kelurahan</label>
+                        <input type="text" class="form-control" placeholder="Masukkan Uraian Kerja" name="uraian_kerja" value="{{$laporan->kelurahan_objek}}" required>
                       </div>
                 </div>
                 
@@ -106,28 +82,134 @@
                           <i class="far fa-calendar-alt"></i>
                         </span>
                       </div>
-                      <input type="date" class="form-control float-right" value="{{$data->tgl_laporan}}" name="tanggal" >
+                      <input type="date" class="form-control float-right" value="{{$laporan->tanggal}}" name="tanggal" >
                     </div>
                     <!-- /.input group -->
                   </div>
+                  
+                  <div class="row">
+                                                
+                    <p><label for="exampleInputEmail1">Tanah</label>
+                        <input type="text" class="form-control" name="tanah" id="tanah" value="{{$laporan->luas_tanah}}" required style="width:100px;" oninput="hitungNjopTanah()" />
+                    </p>
+                    <div class="col-md-6">
+                    <p><label for="exampleInputEmail1">NJOP</label>
+                        <input type="text" class="form-control" name="njopTanah" id="njopTanah" value="{{$laporan->njop_tanah}}" required style="width:200px;" oninput="hitungNjopTanah()" />
+                    </p>
+                    </div>
+                    <p><label for="exampleInputEmail1">Hasil NJOP Tanah</label>
+                        <input type="text" class="form-control" name="hasilnjopTanah" id="hasilnjopTanah" value="{{$laporan->hasil_njop_tanah}}" style="width:200px;" disabled/>
+                    </p>
+
+                    <script>
+                        
+                        function hitungNjopTanah() {
+                            var x = document.getElementById("tanah").value;
+                        //     var hasil=x*500000;
+                           var z =document.getElementById("njopTanah").value;
+                           var konvert=z.replace(/\./g,'');
+                          var hasilnjop=x*konvert;
+                          document.getElementById("hasilnjopTanah").value = konversiRupiah(hasilnjop);
+                         // var hasilnjopbangunan=document.getElementById("hasilnjopbangunan").value;
+                         // totalnya=hasilnjopbangunan+hasilnjop;
+                         // document.getElementById("njopPbb").value = konversiRupiah(totalnya);
+                         return hasilnjop;
+                         }
+                        function konversiRupiah(nilai){
+                            var	number_string = nilai.toString(),
+                                sisa 	= number_string.length % 3,
+                                rupiah 	= number_string.substr(0, sisa),
+                                ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+                                    
+                            if (ribuan) {
+                                separator = sisa ? '.' : '';
+                                rupiah += separator + ribuan.join('.');
+                            }
+                            return rupiah;
+                        }
+                        function hitungNjopBangunan() {
+                            var x = document.getElementById("bangunan").value;
+                        //     var hasil=x*500000;
+                           var z =document.getElementById("njopBangunan").value;
+                           var totalTanah =document.getElementById("hasilnjopTanah").value;
+                           var konvert=z.replace(/\./g,'');
+                           var konvertTanah=totalTanah.replace(/\./g,'');
+
+                          var hasilnjop=x*konvert;
+                          var pbb=(parseInt(konvertTanah)+parseInt(hasilnjop));
+                          document.getElementById("hasilNjopBangunan").value = konversiRupiah(hasilnjop);
+                          document.getElementById("njopPbb").value = konversiRupiah(pbb);
+                        
+                         }
+                         function totalBphtb(){
+                            var x = document.getElementById("hargaTransaksi").value;
+                            var y = document.getElementById("npoptkp").value;
+                            var hasil=(x*y)*0.5;
+                            document.getElementById("bphtb").value = konversiRupiah(hasil);
+                             
+                         }
+                         function njopPbb(){
+                             var hasilNjopTanah=document.getElementById("hasilNjopTanah").value;
+                             var hasilNjopBangunan=document.getElementById("hasilNjopBangunan").value;
+                             var a=hasilNjopTanah.replace(/\./g,'');
+                             var b=hasilNjopBangunan.replace(/\./g,'');
+                             var hasil=a+b;
+                             document.getElementById("njopPbb").value=konversiRupiah(hasil);
+                         }
+
+                        </script>
+                                                                                
+                </div>   
+                <div class="row">
+                    
+                    <p><label for="exampleInputEmail1">Bangunan</label>
+                        <input type="text" class="form-control" name="bangunan" id="bangunan" value="{{$laporan->luas_bangunan}}"  oninput="hitungNjopBangunan()" required style="width:100px;"/>
+                    </p>
+                    <div class="col-md-6">
+                    <p><label for="exampleInputEmail1">NJOP</label>
+                        <input type="text" class="form-control" name="njopBangunan" id="njopBangunan" value="{{$laporan->njop_bangunan}}"  oninput="hitungNjopBangunan()" required style="width:200px;" />
+                    </p>
+                    </div>   
+                    <p><label for="exampleInputEmail1">Hasil NJOP Bangunan</label>
+                        <input type="text" class="form-control" name="hasilNjopBangunan" id="hasilNjopBangunan" value="{{$laporan->hasil_njop_bangunan}}" required style="width:200px;" disabled/>
+                    </p>        
+                </div>  
+            
+                <div class="row">
+                    
+                    <p><label for="exampleInputEmail1">NJOP PBB</label>
+                        <input type="text" class="form-control" name="njopPbb" id="njopPbb" value="{{$laporan->njop_pbb}}" required style="width:200px;" readonly/>
+                    </p>
+                    <div class="col-md-6">
+                    <p><label for="exampleInputEmail1">Harga transaksi</label>
+                        <input type="text" class="form-control" name="hargaTransaksi" id="hargaTransaksi" value="{{$laporan->harga_transaksi}}" oninput="totalBphtb()" required style="width:200px;" />
+                    </p>
+                    </div>   
+                    <p><label for="exampleInputEmail1">Nilai Perolehan Objek Pajak Tidak Kena Pajak (NPOPTKP)</label>
+                        <select class="form-control select2" style="width: 200px;" name="npoptkp" id="npoptkp" value="{{$laporan->npoptkp}}">
+                          @foreach($npoptkp as $value)
+                          <option value="{{ $value->npoptkp_harga }}" {{ (($laporan->npoptkp == $value->npoptkp_harga)) ? 'selected' : null }}>{{ $value->npoptkp_harga }}</option>
+                           @endforeach
+                        </select>
+                    </p>        
+                </div>  
+                <p><label for="exampleInputEmail1">BPHTB</label>
+                    <input type="text" class="form-control" name="bphtb" id="bphtb" value="{{$laporan->bphtb}}" style="width:200px;" disabled/>
+                </p>
                   <div class="form-group">
                     <label>Kabupaten/Kota</label>
-                    <select class="form-control select2" style="width: 100%;" name="kabupaten_kota" value="{{$data->id_kabupaten}}">
-                      <option selected="selected">Makassar</option>
-                      <option>Alaska</option>
-                      <option>California</option>
-                      <option>Delaware</option>
-                      <option>Tennessee</option>
-                      <option>Texas</option>
-                      <option>Washington</option>
+                    <select class="form-control select2" style="width: 100%;" name="kabupaten_kota" value="{{$laporan->id_kabupaten}}">
+                     @foreach($keterangan_tanah as $value)
+                     <option value="{{ $value->keterangan_penjualan }}" {{ (($laporan->ket_tanah == $value->keterangan_penjualan)) ? 'selected' : null }}>{{ $value->keterangan_penjualan }}</option> 
+                      @endforeach
                     </select>
                 </div>
-                <!-- /.form-group -->
+                <!-- /.for  m-group -->
                 <div class="form-group">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Jumlah Pengeluaran</label>
+                        <label for="exampleInputEmail1">PPAT/Notaris</label>
                         <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="jumlah_pengeluaran" value="{{$data->jumlah_output_hasil}}" required>
+                        <input type="text" class="form-control" name="notaris" value="{{$laporan->ppat}}" required>
                             <div class="input-group-append">
                               <span class="input-group-text">Rp</span>
                             </div>
@@ -136,20 +218,18 @@
                 </div>
                 <div class="form-group">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Kendala Saat Bekerja</label>
-                        <input type="text" class="form-control" placeholder="Masukkan Kendala" name="kendala" value="{{$data->kendala}}" required>
+                        <label for="exampleInputEmail1">Keterangan Membayar</label>
+                        <input type="text" class="form-control" placeholder="Masukkan Kendala" name="kendala" value="{{$laporan->keterangan_pembayaran}}" required>
                       </div>
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input @error('file') is-invalid @enderror " name="file"  required>
-                        <label class="custom-file-label" for="exampleInputFile">"{{$data->dokument_lampiran}}"</label>
-                      </div>
-                    </div>
-                    <small class="text-danger"> {{ $errors->first('file') }}</small>
-                  </div>
+                <!--<div class="form-group">-->
+                <!--    <label for="exampleInputFile">File input</label>-->
+                <!--    <div class="input-group">-->
+                <!--      <div class="custom-file">-->
+                <!--      </div>-->
+                <!--    </div>-->
+                <!--    <small class="text-danger"> </small>-->
+                <!--  </div>-->
 
                 
                   
@@ -166,7 +246,7 @@
           </div>
           <!-- /.card-body -->
           
-      </div><!-- /.container-fluid -->
+     
     </section>
     <!-- /.content -->
 
@@ -180,99 +260,6 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="{{asset('admin/plugins/jquery/jquery.min.js')}}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<!-- Select2 -->
-<script src="{{asset('admin/plugins/select2/js/select2.full.min.js')}}"></script>
-<!-- Bootstrap4 Duallistbox -->
-<script src="{{asset('admin/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js')}}"></script>
-<!-- InputMask -->
-<script src="{{asset('admin/plugins/moment/moment.min.js')}}"></script>
-<script src="{{asset('admin/plugins/inputmask/min/jquery.inputmask.bundle.min.js')}}"></script>
-<!-- date-range-picker -->
-<script src="{{asset('admin/plugins/daterangepicker/daterangepicker.js')}}"></script>
-<!-- bootstrap color picker -->
-<script src="{{asset('admin/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="{{asset('admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
-<!-- Bootstrap Switch -->
-<script src="{{asset('admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
-<!-- AdminLTE App -->
-<script src="{{asset('admin/dist/js/adminlte.min.js')}}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{asset('admin/dist/js/demo.js')}}"></script>
-<!-- Page script -->
-<script>
-    $(function () {
-      //Initialize Select2 Elements
-      $('.select2bs4').select2({
-        theme: 'bootstrap4'
-      })
-  
-      //Initialize Select2 Elements
-      $('.select2').select2()
-  
-      //Datemask dd/mm/yyyy
-      $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-      //Datemask2 mm/dd/yyyy
-      $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
-      //Money Euro
-      $('[data-mask]').inputmask()
-  
-      //Date range picker
-      $('#reservation').daterangepicker()
-      //Date range picker with time picker
-      $('#reservationtime').daterangepicker({
-        timePicker: true,
-        timePickerIncrement: 30,
-        locale: {
-          format: 'MM/DD/YYYY hh:mm A'
-        }
-      })
-      //Date range as a button
-      $('#daterange-btn').daterangepicker(
-        {
-          ranges   : {
-            'Today'       : [moment(), moment()],
-            'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-            'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-            'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-          },
-          startDate: moment().subtract(29, 'days'),
-          endDate  : moment()
-        },
-        function (start, end) {
-          $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-        }
-      )
-  
-      //Timepicker
-      $('#timepicker').datetimepicker({
-        format: 'LT'
-      })
-      
-      //Bootstrap Duallistbox
-      $('.duallistbox').bootstrapDualListbox()
-  
-      //Colorpicker
-      $('.my-colorpicker1').colorpicker()
-      //color picker with addon
-      $('.my-colorpicker2').colorpicker()
-  
-      $('.my-colorpicker2').on('colorpickerChange', function(event) {
-        $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
-      });
-  
-      $("input[data-bootstrap-switch]").each(function(){
-        $(this).bootstrapSwitch('state', $(this).prop('checked'));
-      });
-  
-    })
-  </script>
-</body>
-</html>
+
 
 @endsection

@@ -13,23 +13,11 @@ class ViewReport implements FromView,ShouldAutoSize
     
     public function view(): View
     {
-        $kabupaten = DB::table('tabel_kabupaten_kota')
-            ->select('nama_kabupaten')
-            ->get();
- 
-        $countKota = DB::table('tbl_master')
-                    ->select(DB::raw('count(id_kabupaten) as jmlKab'), 'id_kabupaten')
-                    ->groupBy('id_kabupaten')->get();
-        $data = DB::table('tbl_master')
-            ->join('tabel_kabupaten_kota', 'tbl_master.id_kabupaten', '=', 'tabel_kabupaten_kota.nama_kabupaten')
-            ->select('tbl_master.*')
-            ->orderBy('tabel_kabupaten_kota.id')
-            ->orderBy('tbl_master.tgl_laporan')
-            ->get();
+                    
+        $data = DB::table('laporan')->get();
 
         return view('laporan.excel', [
-            'data' => $data,'kabupaten' => $kabupaten,'countKota' => $countKota
-        ]);
+            'data' => $data]);
     }
 
     public function styles(Worksheet $sheet)

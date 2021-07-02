@@ -32,21 +32,21 @@
     </style>
 </head>
 <body>
-    <div style="text-align:center;">
+    <div style="text-align:center;" class="align-middle">
         <h2>QUICK RESPON LAPORAN KERJA</h2>
     </div>
     <table >
         <thead>
             <tr>
-                <th >NO</th>
-                <th >Kabupaten/Kota</th>
-                <th >Tanggal</th>
-                <th >Sasaran Kerja</th>
-                <th >Nama Pelaksana</th>
-                <th >Bagian Pelaksana</th>
-                <th >Uraian Kerja </th>
-                <th >Jumlah Output hasil kerja</th>
-                <th >Kendala/Permasalahan</th> 
+                <th style="text-align: center" class="align-middle">NO</th>
+                <th style="text-align: center" class="align-middle">Kabupaten/Kota</th>
+                <th style="text-align: center" class="align-middle">Tanggal</th>
+                <th style="text-align: center" class="align-middle">Sasaran Kerja</th>
+                <th style="text-align: center" class="align-middle">Nama Pelaksana</th>
+                <th style="text-align: center" class="align-middle">Bagian Pelaksana</th>
+                <th style="text-align: center" class="align-middle">Uraian Kerja </th>
+                <th style="text-align: center" class="align-middle">Jumlah Output hasil kerja</th>
+                <th style="text-align: center" class="align-middle">Kendala/Permasalahan</th> 
             </tr>
         </thead>
         <tbody>
@@ -64,7 +64,7 @@
                     @foreach($countKota as $kota)
                         @if($kota->id_kabupaten == $laporan->id_kabupaten )
                             @if($helpme == 1)
-                                <td rowspan="{{ $kota->jmlKab }}" >{{$laporan->id_kabupaten}}</td> 
+                                <td rowspan="{{ $kota->jmlKab }}" style="text-align: center" class="align-middle">{{$laporan->id_kabupaten}}</td> 
                             @elseif($kota->jmlKab == $helpme )   
                                 @php
                                     $helpme = 0
@@ -72,13 +72,13 @@
                             @endif 
                         @endif 
                     @endforeach 
-                <td> {{$laporan->tgl_laporan}}</td> 
-                <td>{{$laporan->sasaran_kerja}}</td>
-                <td>{{$laporan->nama_pelaksana}}</td>
-                <td>{{$laporan->bagian_pelaksana}}</td>
-                <td>{{$laporan->uraian_kerja}}</td>
-                <td>{{$laporan->jumlah_output_hasil}}</td>
-                <td>{{$laporan->kendala}}</td>
+                <td style="text-align: center" class="align-middle"> {{$laporan->tgl_laporan}}</td> 
+                <td style="text-align: center" class="align-middle">{{$laporan->sasaran_kerja}}</td>
+                <td style="text-align: center" class="align-middle">{{$laporan->nama_pelaksana}}</td>
+                <td style="text-align: center" class="align-middle">{{$laporan->bagian_pelaksana}}</td>
+                <td style="text-align: center" class="align-middle">{{$laporan->uraian_kerja}}</td>
+                <td style="text-align: center" class="align-middle">{{$laporan->jumlah_output_hasil}}</td>
+                <td style="text-align: center" class="align-middle">{{$laporan->kendala}}</td>
               
             </tr>  
             @endforeach 

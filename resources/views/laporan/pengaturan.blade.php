@@ -25,7 +25,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Password</label>
+                                            <label for="exampleInputEmail1">Ganti Password Anda</label>
                                             <input type="password" name="password" class="form-control" placeholder="Password" />
                                         </div>
                                     </div>

@@ -8,12 +8,7 @@ class Report implements FromCollection
 {
     public function collection()
     {
-        $data = DB::table('tbl_master')
-            ->join('tabel_kabupaten_kota', 'tbl_master.id_kabupaten', '=', 'tabel_kabupaten_kota.nama_kabupaten')
-            ->select('tbl_master.*')
-            ->orderBy('tabel_kabupaten_kota.id')
-            ->orderBy('tbl_master.tgl_laporan')
-            ->get();
+        $data = DB::table('laporan')->get();
         return $data;
     }
 }
