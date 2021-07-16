@@ -149,7 +149,7 @@
                                                         var npoptkp = document.getElementById("npoptkp").value;
                                                         var konvertHarga=harga.replace(/\./g,'');
                                                         var konvertNpoptkp=npoptkp.replace(/\./g,'');
-                                                        var hasil=(konvertHarga-konvertNpoptkp)*0.5;
+                                                        var hasil=(konvertHarga-konvertNpoptkp)*0.05;
                                                         document.getElementById("bphtb").value = konversiRupiah(hasil);
                                                          
                                                      }
@@ -191,7 +191,7 @@
                                                 </p>
                                                 </div>   
                                                 <p><label for="exampleInputEmail1">Nilai Perolehan Objek Pajak Tidak Kena Pajak (NPOPTKP)</label>
-                                                    <select class="form-control select2" style="width: 200px;" name="npoptkp" id="npoptkp">
+                                                    <select class="form-control select2" style="width: 200px;" name="npoptkp" onchange="totalBphtb()" id="npoptkp">
                                                        <option value="60.000.000">60.000.000</option>
                                                        <option value="300.000.000">300.000.000</option>
                                                     </select>

@@ -22,7 +22,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-sm" >
-                    <img src="{{asset('gambar/aaaa.png')}}" style="margin-left:25%;margin-right:25%;width: 50%" >
+                    <img src="{{asset('gambar/logo.svg')}}" style="margin-left:25%;margin-right:25%;width: 50%" >
                 </div>
                 <div class="col-sm">
                     
@@ -86,7 +86,7 @@
                 </div> 
             
                 <div class="col-sm"  >
-                    <img cclass="rounded mx-auto d-block" style="margin-right:25%;margin-left:25%;width: 50%" src="{{asset('gambar/aaab.png')}}">
+                    <img cclass="rounded mx-auto d-block" style="margin-right:25%;margin-left:25%;width: 50%" src="{{asset('gambar/logo.svg')}}">
                 </div>
             </div> 
         </div>

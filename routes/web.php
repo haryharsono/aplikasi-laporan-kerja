@@ -30,6 +30,7 @@ use App\Http\Controllers\PengaturanController;
         Route::get('/hapus/{id}','LaporanController@destroy');
         Route::post('/update','LaporanController@update');
         Route::get('/kabupaten','LaporanController@dataKabupaten');
+        Route::get('/laporan/cari','LaporanController@cari');
 //    });
     Route::get('/', 'HomeController@index');
     Route::get('/inputData', 'InputController@input');//user

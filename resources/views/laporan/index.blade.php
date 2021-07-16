@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Data Kategori</h1>
+                    <h1>Laporan BPHTB</h1>
                 </div>
                 <div class="col-sm-6"></div>
             </div>
@@ -21,10 +21,13 @@
                 <div class="card">
                     <div class="card-header">
                    
-                        <a href="{{url('/print')}}">
+                        <!-- <a href="{{url('/print')}}">
                             <button type="button" class="btn  btn-primary" data-target="#exampleModal">PRINT  </button>
-                        </a>
-                        
+                        </a> -->
+	<form action="/laporan/cari" method="GET">
+		<input type="text" name="cari" placeholder="Cari Wajib Pajak .." value="{{ old('cari') }}">
+		<input type="submit" value="CARI">
+	</form>
                             
                     </div>
                     <!-- /.card-header -->

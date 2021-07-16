@@ -118,15 +118,27 @@ class LaporanController extends Controller
             
         // ]);
          $a=DB::table('laporan')->where('id',$request->id)->update([
-            'nama_pelaksana' => $request->nama,
-            'sasaran_kerja' => $request->sasaran_kerja,
-            'bagian_pelaksana' => $request->bagian_pelaksana,
-            'uraian_kerja' => $request->uraian_kerja,
-            'tgl_laporan' => $request->tanggal,
-            'id_kabupaten' => $request->kabupaten_kota,
-            'jumlah_output_hasil' => $request->jumlah_pengeluaran,
-            'kendala' => $request->kendala,
-            'dokument_lampiran' => $request->filet
+            'wajib_pajak' => $request->nama_wajib_pajak,
+            'Nama_penjual' => $request->nama_penjual,
+            'nop' => $request->nop,
+            'lokasi_objek_pajak' => $request->lokasi_objek_pajak,
+            'kecamatan_objek' => $request->kecamatan_objek,
+            'kelurahan_objek'=>$request->kelurahan,
+            'tanggal'=>$request->tanggal,
+            'luas_tanah'=>$request->tanah,
+            'luas_bangunan'=>$request->bangunan,
+            'njop_tanah'=>$request->njop_tanah,
+            'njop_bangunan'=>$request->njop_bangunan,
+            'hasil_njop_tanah' => $request->hasil_njop_tanah,
+            'hasil_njop_bangunan' => $request->hasil_njop_bangunan,
+            'harga_transaksi'=>$request->harga_transaksi,
+            'npoptkp'=>$request->npoptkp,
+            'njop_pbb'=>$request->njopbb,
+            'bphtb' => $request->bphtb,
+            'ket_tanah' => $request->keterangan_tanah,
+            'ppat' => $request->notaris,
+            'keterangan_pembayaran' => $request->keterangan_pembayaran
+
         ]);
         //dd($a);
         
@@ -146,6 +158,20 @@ class LaporanController extends Controller
      
         return Redirect::to('laporan');
     }
+    public function cari(Request $request)
+	{
+		// menangkap data pencarian
+		$cari = $request->cari;
+ 
+    		// mengambil data dari table pegawai sesuai pencarian data
+		$data = DB::table('laporan')
+		->where('wajib_pajak','like',"%".$cari."%")
+		->paginate();
+ 
+    		// mengirim data pegawai ke view index
+            return view('laporan.index',['data' => $data]);
+ 
+	}
 
     public function print()
     {

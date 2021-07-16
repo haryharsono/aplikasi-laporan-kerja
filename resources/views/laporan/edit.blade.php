@@ -26,32 +26,32 @@
                    
                         <label for="exampleInputEmail1">Nama Wajib Pajak</label>
                         <input type="hidden" name="id" value="{{ $laporan->id }}">
-                    <input type="text" name="nama" class="form-control" value="{{$laporan->wajib_pajak}}" placeholder="Masukkan Nama" required>
+                    <input type="text" name="nama_wajib_pajak" class="form-control" value="{{$laporan->wajib_pajak}}" placeholder="Masukkan Nama" required>
                       </div>
                       <div class="form-group">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nama Penjual</label>
-                            <input type="text" name="sasaran_kerja" value="{{$laporan->Nama_penjual}}" class="form-control" placeholder="Masukkan Sasaran Kerja" required>
+                            <input type="text" name="nama_penjual" value="{{$laporan->Nama_penjual}}" class="form-control" placeholder="Masukkan Sasaran Kerja" required>
                           </div>
                           
                     </div>
                     <div class="form-group">
                       <div class="form-group">
                           <label for="exampleInputEmail1">Nomor Objek Pajak (NOP)</label>
-                          <input type="text" name="sasaran_kerja" value="{{$laporan->nop}}" class="form-control" placeholder="Masukkan Sasaran Kerja" required>
+                          <input type="text" name="nop" value="{{$laporan->nop}}" class="form-control" placeholder="Masukkan Sasaran Kerja" required>
                         </div>
                         
                   </div>
                   <div class="form-group">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Lokasi Objek Pajak</label>
-                        <input type="text" name="sasaran_kerja" value="{{$laporan->lokasi_objek_pajak}}" class="form-control" placeholder="Masukkan Sasaran Kerja" required>
+                        <input type="text" name="lokasi_objek_pajak" value="{{$laporan->lokasi_objek_pajak}}" class="form-control" placeholder="Masukkan Sasaran Kerja" required>
                       </div>
                       
                 </div>
                 <div class="form-group">
                   <label>Kecamatan Objek</label>
-                  <select class="form-control select2" style="width: 100%;" name="bagian_pelaksana" value="{{$laporan->kecamatan_objek}}">
+                  <select class="form-control select2" style="width: 100%;" name="kecamatan_objek" value="{{$laporan->kecamatan_objek}}">
                     @foreach($kab as $value)
                     <option value="{{ $value->kecamatan }}" {{ (($laporan->kecamatan_objek == $value->kecamatan)) ? 'selected' : null }}>{{ $value->kecamatan }}</option>
                      @endforeach
@@ -65,7 +65,7 @@
                 <div class="form-group">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Kelurahan</label>
-                        <input type="text" class="form-control" placeholder="Masukkan Uraian Kerja" name="uraian_kerja" value="{{$laporan->kelurahan_objek}}" required>
+                        <input type="text" class="form-control" placeholder="Masukkan Uraian Kerja" name="kelurahan" value="{{$laporan->kelurahan_objek}}" required>
                       </div>
                 </div>
                 
@@ -94,11 +94,11 @@
                     </p>
                     <div class="col-md-6">
                     <p><label for="exampleInputEmail1">NJOP</label>
-                        <input type="text" class="form-control" name="njopTanah" id="njopTanah" value="{{$laporan->njop_tanah}}" required style="width:200px;" oninput="hitungNjopTanah()" />
+                        <input type="text" class="form-control" name="njop_tanah" id="njopTanah" value="{{$laporan->njop_tanah}}" required style="width:200px;" oninput="hitungNjopTanah()" />
                     </p>
                     </div>
                     <p><label for="exampleInputEmail1">Hasil NJOP Tanah</label>
-                        <input type="text" class="form-control" name="hasilnjopTanah" id="hasilnjopTanah" value="{{$laporan->hasil_njop_tanah}}" style="width:200px;" disabled/>
+                        <input type="text" class="form-control" name="hasil_njop_tanah" id="hasilnjopTanah" value="{{$laporan->hasil_njop_tanah}}" style="width:200px;" readonly/>
                     </p>
 
                     <script>
@@ -144,7 +144,7 @@
                          function totalBphtb(){
                             var x = document.getElementById("hargaTransaksi").value;
                             var y = document.getElementById("npoptkp").value;
-                            var hasil=(x*y)*0.5;
+                            var hasil=(x*y)*0.05;
                             document.getElementById("bphtb").value = konversiRupiah(hasil);
                              
                          }
@@ -167,26 +167,26 @@
                     </p>
                     <div class="col-md-6">
                     <p><label for="exampleInputEmail1">NJOP</label>
-                        <input type="text" class="form-control" name="njopBangunan" id="njopBangunan" value="{{$laporan->njop_bangunan}}"  oninput="hitungNjopBangunan()" required style="width:200px;" />
+                        <input type="text" class="form-control" name="njop_bangunan" id="njopBangunan" value="{{$laporan->njop_bangunan}}"  oninput="hitungNjopBangunan()" required style="width:200px;" />
                     </p>
                     </div>   
                     <p><label for="exampleInputEmail1">Hasil NJOP Bangunan</label>
-                        <input type="text" class="form-control" name="hasilNjopBangunan" id="hasilNjopBangunan" value="{{$laporan->hasil_njop_bangunan}}" required style="width:200px;" disabled/>
+                        <input type="text" class="form-control" name="hasil_njop_bangunan" id="hasilNjopBangunan" value="{{$laporan->hasil_njop_bangunan}}" required style="width:200px;" readonly/>
                     </p>        
                 </div>  
             
                 <div class="row">
                     
                     <p><label for="exampleInputEmail1">NJOP PBB</label>
-                        <input type="text" class="form-control" name="njopPbb" id="njopPbb" value="{{$laporan->njop_pbb}}" required style="width:200px;" readonly/>
+                        <input type="text" class="form-control" name="njopbb" id="njopPbb" value="{{$laporan->njop_pbb}}" required style="width:200px;" readonly/>
                     </p>
                     <div class="col-md-6">
                     <p><label for="exampleInputEmail1">Harga transaksi</label>
-                        <input type="text" class="form-control" name="hargaTransaksi" id="hargaTransaksi" value="{{$laporan->harga_transaksi}}" oninput="totalBphtb()" required style="width:200px;" />
+                        <input type="text" class="form-control" name="harga_transaksi" id="hargaTransaksi" value="{{$laporan->harga_transaksi}}" oninput="totalBphtb()" required style="width:200px;" />
                     </p>
                     </div>   
                     <p><label for="exampleInputEmail1">Nilai Perolehan Objek Pajak Tidak Kena Pajak (NPOPTKP)</label>
-                        <select class="form-control select2" style="width: 200px;" name="npoptkp" id="npoptkp" value="{{$laporan->npoptkp}}">
+                        <select class="form-control select2" style="width: 200px;" onchange="totalBphtb()" name="npoptkp" id="npoptkp" value="{{$laporan->npoptkp}}">
                           @foreach($npoptkp as $value)
                           <option value="{{ $value->npoptkp_harga }}" {{ (($laporan->npoptkp == $value->npoptkp_harga)) ? 'selected' : null }}>{{ $value->npoptkp_harga }}</option>
                            @endforeach
@@ -194,11 +194,11 @@
                     </p>        
                 </div>  
                 <p><label for="exampleInputEmail1">BPHTB</label>
-                    <input type="text" class="form-control" name="bphtb" id="bphtb" value="{{$laporan->bphtb}}" style="width:200px;" disabled/>
+                    <input type="text" class="form-control" name="bphtb" id="bphtb" value="{{$laporan->bphtb}}" style="width:200px;" readonly/>
                 </p>
                   <div class="form-group">
                     <label>Kabupaten/Kota</label>
-                    <select class="form-control select2" style="width: 100%;" name="kabupaten_kota" value="{{$laporan->id_kabupaten}}">
+                    <select class="form-control select2" style="width: 100%;" name="keterangan_tanah" value="{{$laporan->id_kabupaten}}">
                      @foreach($keterangan_tanah as $value)
                      <option value="{{ $value->keterangan_penjualan }}" {{ (($laporan->ket_tanah == $value->keterangan_penjualan)) ? 'selected' : null }}>{{ $value->keterangan_penjualan }}</option> 
                       @endforeach
@@ -219,7 +219,7 @@
                 <div class="form-group">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Keterangan Membayar</label>
-                        <input type="text" class="form-control" placeholder="Masukkan Kendala" name="kendala" value="{{$laporan->keterangan_pembayaran}}" required>
+                        <input type="text" class="form-control" placeholder="Masukkan Kendala" name="keterangan_pembayaran" value="{{$laporan->keterangan_pembayaran}}" required>
                       </div>
                 </div>
                 <!--<div class="form-group">-->

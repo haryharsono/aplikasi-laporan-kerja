@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>QUICK RESPON LAPORAN KERJA</title>
+  <title>Laporan BPHTB</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -38,7 +38,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <p class="brand-link">
-      <img src="{{asset('gambar/gambar5.jpg')}}" widht="50px" style="opacity: .9">
+      <img src="{{asset('gambar/images.png')}}" style="width:240px;" >
      
     </p>
 
@@ -48,7 +48,7 @@
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper" @stack('background')>
     <!-- Content Header (Page header) -->
     
     <!-- /.content-header -->
